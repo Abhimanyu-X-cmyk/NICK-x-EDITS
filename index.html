@@ -1,0 +1,471 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090909">
+<meta name="description" content="NICKxEDITS Cricket Hub - Live cricket scores, fixtures, match results and cricket updates.">
+<title>NICKxEDITS | Cricket Live</title>
+
+<style>
+:root {
+  --red:#ed2525;
+  --dark:#090909;
+  --panel:#151515;
+  --border:#303030;
+  --muted:#aaa;
+}
+
+* {
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html { scroll-behavior:smooth; }
+
+body {
+  background:var(--dark);
+  color:#fff;
+  font-family:Arial,Helvetica,sans-serif;
+  line-height:1.6;
+}
+
+a { text-decoration:none; }
+
+header {
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(12,12,12,.96);
+  border-bottom:2px solid var(--red);
+  padding:16px 5%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo {
+  color:white;
+  font-size:25px;
+  font-weight:900;
+  letter-spacing:1px;
+}
+
+.logo span { color:var(--red); }
+
+nav {
+  display:flex;
+  gap:20px;
+}
+
+nav a {
+  color:#ddd;
+  font-size:14px;
+  transition:.3s;
+}
+
+nav a:hover { color:var(--red); }
+
+.hero {
+  min-height:420px;
+  padding:75px 7%;
+  display:flex;
+  align-items:center;
+  background:
+    radial-gradient(circle at 85% 40%,#681010 0%,transparent 35%),
+    linear-gradient(120deg,#260606,#111,#080808);
+}
+
+.hero-content { max-width:720px; }
+
+.tag {
+  color:#ff4848;
+  font-size:12px;
+  font-weight:bold;
+  letter-spacing:4px;
+}
+
+.hero h1 {
+  font-size:clamp(42px,8vw,76px);
+  line-height:1.08;
+  margin:18px 0;
+  font-weight:900;
+}
+
+.hero h1 span { color:var(--red); }
+
+.hero p {
+  color:#ccc;
+  font-size:17px;
+  max-width:550px;
+}
+
+.button {
+  display:inline-block;
+  margin-top:25px;
+  padding:13px 23px;
+  background:var(--red);
+  color:white;
+  font-weight:bold;
+  border-radius:5px;
+  transition:.3s;
+}
+
+.button:hover {
+  background:#b91515;
+  transform:translateY(-3px);
+}
+
+section { padding:55px 5%; }
+
+.section-tag {
+  color:var(--red);
+  font-size:12px;
+  letter-spacing:3px;
+  font-weight:bold;
+}
+
+h2 {
+  font-size:29px;
+  margin:8px 0;
+}
+
+.description {
+  color:var(--muted);
+  font-size:14px;
+}
+
+.panel {
+  background:var(--panel);
+  border:1px solid var(--border);
+  padding:20px;
+  border-radius:12px;
+  margin-top:22px;
+}
+
+.panel h3 {
+  margin-bottom:15px;
+  font-size:19px;
+}
+
+.live-label {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:#ff5555;
+  font-weight:bold;
+  font-size:12px;
+  letter-spacing:2px;
+}
+
+.live-dot {
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:#ff2929;
+  box-shadow:0 0 12px #ff2929;
+}
+
+.widget-box {
+  background:#fff;
+  color:#111;
+  width:100%;
+  min-height:310px;
+  border-radius:8px;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  overflow:auto;
+}
+
+.widget-box.vertical {
+  min-height:620px;
+}
+
+.cards {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin-top:22px;
+}
+
+.card {
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:22px;
+  transition:.3s;
+}
+
+.card:hover {
+  border-color:var(--red);
+  transform:translateY(-4px);
+}
+
+.card-icon {
+  font-size:28px;
+}
+
+.card h3 {
+  color:#ff4848;
+  margin:10px 0;
+}
+
+.card p {
+  color:var(--muted);
+  font-size:14px;
+}
+
+.about-box {
+  background:linear-gradient(130deg,#241010,#141414);
+  border:1px solid #482020;
+  border-radius:12px;
+  padding:25px;
+  margin-top:20px;
+}
+
+.about-box p {
+  color:#ccc;
+  margin-top:10px;
+}
+
+.notice {
+  color:#999;
+  font-size:12px;
+  margin-top:18px;
+  line-height:1.7;
+}
+
+footer {
+  background:#111;
+  border-top:2px solid var(--red);
+  padding:30px 5%;
+  text-align:center;
+}
+
+footer .logo { font-size:23px; }
+
+footer p {
+  color:#999;
+  font-size:13px;
+  margin-top:8px;
+}
+
+footer a { color:#ff5555; }
+
+@media(max-width:700px) {
+  header {
+    flex-direction:column;
+    gap:12px;
+  }
+
+  nav {
+    width:100%;
+    justify-content:center;
+    gap:18px;
+  }
+
+  nav a { font-size:13px; }
+
+  .hero {
+    min-height:350px;
+    padding:55px 6%;
+  }
+
+  section { padding:42px 5%; }
+
+  .cards { grid-template-columns:1fr; }
+
+  h2 { font-size:25px; }
+
+  .panel { padding:13px; }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="#" class="logo">
+    NICK<span>x</span>EDITS
+  </a>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#live">Live Scores</a>
+    <a href="#matches">Matches</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- HERO SECTION -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="tag">WELCOME TO NICKxEDITS</div>
+
+    <h1>
+      CRICKET<br>
+      <span>LIVE.</span> EVERY MOMENT.
+    </h1>
+
+    <p>
+      Your cricket destination for live scores,
+      upcoming fixtures, match results and
+      all the action from the world of cricket.
+    </p>
+
+    <a href="#live" class="button">
+      EXPLORE LIVE SCORES →
+    </a>
+  </div>
+</div>
+
+<!-- LIVE SCORES -->
+<section id="live">
+
+  <div class="section-tag">LIVE MATCH CENTRE</div>
+  <h2>🔴 Live Cricket Scores</h2>
+
+  <p class="description">
+    Follow the latest available cricket match updates.
+  </p>
+
+  <div class="panel">
+    <div class="live-label">
+      <span class="live-dot"></span>
+      LIVE SCORE UPDATES
+    </div>
+
+    <h3 style="margin-top:12px">
+      Latest Cricket Scores
+    </h3>
+
+    <div class="widget-box">
+      <script src="https://cdorgapi.b-cdn.net/widgets/score.js"></script>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>Fixtures • Live • Results</h3>
+
+    <p class="description" style="margin-bottom:15px">
+      Browse scheduled, ongoing and completed matches.
+    </p>
+
+    <div class="widget-box vertical">
+      <script src="https://cdorgapi.b-cdn.net/widgets/vmatchlist.js"></script>
+    </div>
+  </div>
+
+</section>
+
+<!-- MATCH CENTRE -->
+<section id="matches">
+
+  <div class="section-tag">FOLLOW THE GAME</div>
+  <h2>🏏 Cricket Match Centre</h2>
+
+  <p class="description">
+    Everything cricket fans need in one place.
+  </p>
+
+  <div class="cards">
+
+    <div class="card">
+      <div class="card-icon">📅</div>
+      <h3>Upcoming Matches</h3>
+      <p>
+        Explore upcoming fixtures and
+        scheduled cricket matches.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🏏</div>
+      <h3>Live Matches</h3>
+      <p>
+        Keep track of ongoing matches
+        and current scores.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🏆</div>
+      <h3>Match Results</h3>
+      <p>
+        Catch up on completed matches
+        and their final results.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+
+  <div class="section-tag">ABOUT OUR PLATFORM</div>
+  <h2>About NICKxEDITS</h2>
+
+  <div class="about-box">
+    <h3>
+      NICK<span style="color:#ed2525">x</span>EDITS
+    </h3>
+
+    <p>
+      NICKxEDITS is an independent cricket
+      information platform created for cricket fans.
+      Our goal is to make live scores, match fixtures
+      and results easy to access.
+    </p>
+
+    <p>
+      Stay connected with the game and follow
+      cricket action from one place.
+    </p>
+  </div>
+
+  <p class="notice">
+    Live scores and match information are provided
+    by an external data provider. Availability and
+    update frequency depend on that provider.
+    NICKxEDITS is an independent website and is not
+    affiliated with or endorsed by the ICC, BCCI
+    or any official cricket board.
+  </p>
+
+</section>
+
+</main>
+
+<footer>
+
+  <div class="logo">
+    NICK<span>x</span>EDITS
+  </div>
+
+  <p>CRICKET • LIVE SCORES • MATCH UPDATES</p>
+
+  <p>
+    © <span id="year"></span> NICKxEDITS.
+    All rights reserved.
+  </p>
+
+  <p>
+    <a href="#live">Back to Live Scores ↑</a>
+  </p>
+
+</footer>
+
+<script>
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+</script>
+
+</body>
+</html>
